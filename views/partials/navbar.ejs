@@ -1,0 +1,77 @@
+<div class="navbar-placeholder" style="height: 64.3906px;"><nav class="navbar navbar-wrapper navbar-fade is-transparent navbar-light">
+    <div class="container">
+        <!-- Brand -->
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <h2>QUOTR</h2>
+            </a>
+
+            <!-- Sidebar Trigger -->
+            <a id="navigation-trigger" class="navbar-item hamburger-btn" href="javascript:void(0);" style="opacity: 1;">
+                <span class="menu-toggle">
+                    <span class="icon-box-toggle">
+                        <span class="rotate">
+                            <i class="icon-line-top"></i>
+                            <i class="icon-line-center"></i>
+                            <i class="icon-line-bottom"></i>
+                        </span>
+                </span>
+                </span>
+            </a>
+
+            <!-- Responsive toggle -->
+            <div class="custom-burger" data-target="">
+                <a id="" class="responsive-btn" href="javascript:void(0);">
+                    <span class="menu-toggle">
+                        <span class="icon-box-toggle">
+                            <span class="rotate">
+                                <i class="icon-line-top"></i>
+                                <i class="icon-line-center"></i>
+                                <i class="icon-line-bottom"></i>
+                            </span>
+                    </span>
+                    </span>
+                </a>
+            </div>
+            <!-- /Responsive toggle -->
+        </div>
+
+        <!-- Navbar menu -->
+        <div class="navbar-menu">
+            <!-- Navbar Start -->
+            <div class="navbar-start">
+                <!-- Navbar item -->
+                <a class="navbar-item is-slide" href="/">
+                    Home
+                </a>
+                <!-- Navbar item -->
+                <a class="navbar-item is-slide" href="/dashboard">
+                    Dashboard
+                </a>
+            </div>
+
+            <!-- Navbar end -->
+            <div class="navbar-end">
+                <% if (user) { %>
+                <!-- Signup button -->
+                <div class="navbar-item">
+                    <form method="post" action="/users/logout">
+                        <button type="submit" class="button button-signup btn-outlined is-bold btn-align rounded raised light-btn">Logout</button>
+                    </form>
+                </div>
+                <%} else { %>
+                    <div class="navbar-item">
+                        <a  href="/users/Login" class="button button-signup btn-outlined is-bold btn-align rounded raised light-btn">
+                            Login
+                        </a>
+                    </div>
+                    <div class="navbar-item">
+                        <a  href="/users/register" class="button button-signup btn-outlined is-bold btn-align rounded raised light-btn">
+                            Register
+                        </a>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</nav></div>

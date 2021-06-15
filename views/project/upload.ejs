@@ -1,0 +1,103 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+
+<section class="section">
+    <container>
+        <ul class="steps is-narrow is-medium is-centered has-content-centered">
+            <li class="steps-segment ">
+              <a href="#" class="has-text-dark">
+                <span class="steps-marker is-primary">
+                  <span class="icon">
+                    <i class="fas fa-info-circle"></i>
+                  </span>
+                </span>
+                <div class="steps-content">
+                  <p class="heading">Property Details</p>
+                </div>
+              </a>
+            </li>
+            <li class="steps-segment is-active has-gaps">
+              <a hef=#" class="has-text-dark">
+                <span class="steps-marker">
+                  <span class="icon">
+                    <i class="far fa-object-group"></i>
+                  </span>
+                </span>
+                <div class="steps-content">
+                  <p class="heading">Upload Drawings</p>
+                </div>
+              </a>
+            </li>
+            <li class="steps-segment">
+              <span class="steps-marker">
+                <span class="icon">
+                    <i class="fas fa-pencil-ruler"></i>
+                </span>
+              </span>
+              <div class="steps-content">
+                <p class="heading">Create Schedule of Works</p>
+              </div>
+            </li>
+            <li class="steps-segment">
+              <span class="steps-marker">
+                <span class="icon">
+                    <i class="fas fa-money-check-alt"></i>
+                </span>
+              </span>
+              <div class="steps-content">
+                <p class="heading">Send for Quotation</p>
+              </div>
+            </li>
+          </ul>
+    </container>
+</section>
+
+<section class="section">
+    <container>
+        <div class="columns">
+            <div class="column is-half is-offset-one-quarter">          
+                <div class="box has-text-centered">
+
+                    <form action="/project/upload" enctype="multipart/form-data" method="post">
+                        <div id="forge-upload" class="file has-name is-boxed is-centered">
+                            <label class="file-label">
+                              <input class="file-input" type="file" name="resume">
+                              <span class="file-cta">
+                                <span class="file-icon">
+                                  <i class="fas fa-upload"></i>
+                                </span>
+                                <span class="file-label">
+                                  Choose a file…
+                                </span>
+                              </span>
+                              <span class="file-name">
+                                  No file uploaded
+                              </span>
+                            </label>
+                          </div>
+                          <div class="field has-text-right">
+                            <div class="control">
+                              <button type="submit" class="button is-primary is-rounded">
+                                Upload
+                              </button>
+                            </div>
+                          </div>
+                          <input id="projectId" name="projectId" type="hidden" value="<%= projectId %>">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </container>
+</section>
+
+
+<script>
+    const fileInput = document.querySelector('#forge-upload input[type=file]');
+    fileInput.onchange = () => {
+      if (fileInput.files.length > 0) {
+        const fileName = document.querySelector('#forge-upload  .file-name');
+        fileName.textContent = fileInput.files[0].name;
+      }
+    }
+  </script>

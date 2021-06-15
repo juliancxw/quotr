@@ -1,0 +1,92 @@
+<%- include('../partials/head') %>
+
+    <div class="columns m-0">
+        <div class="column is-8 is-gapless p-0">
+            <section class="hero is-light is-fullheight">
+                <div class="hero-body">
+                  <div class="">
+                    <p class="title">
+                      Fullheight hero
+                    </p>
+                    <p class="subtitle">
+                      Fullheight subtitle
+                    </p>
+                  </div>
+                </div>
+              </section>
+        </div>
+        <div class="column is-4 is-gapless p-0">
+            <section class="hero is-fullheight">
+                <div class="hero-head p-3">
+                    <div class="level">
+                        <div class="level-left">
+                            
+                            
+                        </div>
+                        <div class="level-right">
+                            <div class="level-item">
+                                <p class="is-size-7">Not registered yet?</p>
+                            </div>
+                            <div class="level-item">
+                                <a class="button is-small is-rounded" href="register">Register</a>
+                            </div>
+                        </div>                       
+                    </div>
+                </div>
+                <div class="hero-body">
+                    <div class="container">
+                        <% if (errMsgArr.includes("loginRequired")) { %>
+                            <h2 class="title has-text-danger">Login Required!</h2>
+                        <% } else { %>
+                            <h2 class="title">Welcome Back!</h2>
+                        <% } %>
+                        <p class="subtitle is-6">Login to your account</p>
+                      
+                        <form method="POST" action="/users/login">
+                            <div class="field">
+                                <p class="control has-icons-left has-icons-right">
+                                <input class="input  <% if (errMsgArr.includes("invalidEmail")) { %> is-danger <% } %>" type="email" name="email" value="<%= email %>" placeholder="Email">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                                <% if (errMsgArr.includes("invalidEmail")) { %>
+                                <span class="icon is-small is-right has-text-danger">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </span>
+                                <% } %>
+                                </p>
+                                <% if (errMsgArr.includes("invalidEmail")) { %>
+                                <p class="help is-danger">No user with email address found!</p>
+                                <% } %>
+                            </div>
+                            <div class="field">
+                                <p class="control has-icons-left">
+                                <input class="input <% if (errMsgArr.includes("invalidPassword")) { %> is-danger <% } %>" type="password" name="password" placeholder="Password">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                                <% if (errMsgArr.includes("invalidEmail")) { %>
+                                    <span class="icon is-small is-right has-text-danger">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </span>
+                                    <% } %>
+                                </p>
+                                <% if (errMsgArr.includes("invalidPassword")) { %>
+                                    <p class="help is-danger">Invalid Password!</p>
+                                    <% } %>
+                            </div>
+                            <div class="field">
+                                <p class="control">
+                                <button class="button is-primary is-rounded is-fullwidth">
+                                    Login
+                                </button>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>    
+  </body>
+</html>

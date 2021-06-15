@@ -1,0 +1,189 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+
+<section class="section">
+    <container>
+        <ul class="steps is-narrow is-medium is-centered has-content-centered">
+            <li class="steps-segment is-active has-gaps">
+              <a href="#" class="has-text-dark">
+                <span class="steps-marker is-primary">
+                  <span class="icon">
+                    <i class="fas fa-info-circle"></i>
+                  </span>
+                </span>
+                <div class="steps-content">
+                  <p class="heading">Property Details</p>
+                </div>
+              </a>
+            </li>
+            <li class="steps-segment">
+              <a hef=#" class="has-text-dark">
+                <span class="steps-marker">
+                  <span class="icon">
+                    <i class="far fa-object-group"></i>
+                  </span>
+                </span>
+                <div class="steps-content">
+                  <p class="heading">Upload Drawings</p>
+                </div>
+              </a>
+            </li>
+            <li class="steps-segment">
+              <span class="steps-marker">
+                <span class="icon">
+                    <i class="fas fa-pencil-ruler"></i>
+                </span>
+              </span>
+              <div class="steps-content">
+                <p class="heading">Create Schedule of Works</p>
+              </div>
+            </li>
+            <li class="steps-segment">
+              <span class="steps-marker">
+                <span class="icon">
+                    <i class="fas fa-money-check-alt"></i>
+                </span>
+              </span>
+              <div class="steps-content">
+                <p class="heading">Send for Quotation</p>
+              </div>
+            </li>
+          </ul>
+    </container>
+</section>
+
+<section class="section">
+    <container>
+        <div class="columns">
+            <div class="column is-half is-offset-one-quarter">          
+                <form method="POST" action="../project/new">
+                    <fieldset>
+                        <div class="box py-5">
+                            <div class="block has-text-centered">
+                                <div class="container">
+                                    <h2 class="title">Property Information</h2>
+                                    <p class="subtitle">Enter information about the subject property</p>
+                                </div>
+                            </div>
+                            <div class="divider">
+                                Property Owner
+                            </div>
+                            <div class="field is-grouped">
+                                <div class="field-body">
+                                    <div class="field">
+                                        <p class="control has-icons-left has-icons-right">
+                                            <input class="input is-rounded" type="text" name="owner_first_name" placeholder="First Name">
+                                            <span class="icon is-small is-left">
+                                                <i class="far fa-user"></i>
+                                            </span>
+                                            </p>
+                                    </div>
+                                    <div class="field">
+                                        <p class="control has-icons-left has-icons-right">
+                                            <input class="input is-rounded" type="text" name="owner_last_name" placeholder="Last Name">
+                                            <span class="icon is-small is-left">
+                                                <i class="far fa-user"></i>
+                                            </span>
+                                            </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-grouped">
+                                <div class="field-body">
+                                    <div class="field">
+                                        <p class="control has-icons-left has-icons-right">
+                                            <input class="input is-rounded" type="email" name="owner_email" placeholder="Email">
+                                            <span class="icon is-small is-left">
+                                                <i class="fas fa-envelope"></i>
+                                            </span>
+                                            <span class="icon is-small is-right">
+                                                <i class="fas fa-check"></i>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="field">
+                                        <p class="control has-icons-left has-icons-right">
+                                            <input class="input is-rounded" type="text" name="owner_contact" placeholder="Contact No.">
+                                            <span class="icon is-small is-left">
+                                                <i class="fas fa-phone"></i>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="divider">
+                                Property Address
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input is-rounded" type="text" name="address1" placeholder="Address Line 1">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <input class="input is-rounded" type="text" name="address2" placeholder="Address Line 2">
+                                </div>
+                            </div>
+                            <div class="field is-grouped">
+                                <div class="control">
+                                    <input class="input is-rounded" type="text" name="unit_no" placeholder="Unit/Apt No.">
+                                </div>
+                                <div class="control is-expanded">
+                                    <input class="input is-rounded" type="text" name="building_name" placeholder="Building Name">
+                                </div>
+                            </div>
+                            <div class="field is-grouped">
+                                <div class="control is-expanded">
+                                    <input class="input is-rounded" type="text" name="country" value="Singapore" placeholder="Singapore" disabled>
+                                </div>
+                                <div class="control is-expanded">
+                                    <input class="input is-rounded" type="text" name="postal" placeholder="Postal Code">
+                                </div>
+                            </div>
+                            
+                            <div class="divider">
+                                Property Information
+                            </div>
+                 
+                            <div class="field is-grouped">
+                                <div class="control">
+                                    <div class="select is-rounded">
+                                        <select name="property_type">
+                                            <option>Property Type</option>
+                                            <option value="HDB">HDB</option>
+                                            <option value="Condo/Apartment">Condo/Apartment</option>
+                                            <option value="Landed House">Landed House</option>
+                                            <option value="Commercial">Commercial</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="field has-addons">
+                                    <div class="control is-expanded">
+                                        <input class="input is-rounded" type="text" name="gross_floor_area" placeholder="Gross Floor Area">
+                                    </div>
+                                    <div class="control">
+                                        <div class="select is-rounded">
+                                            <select name="gfa_unit">
+                                                <option value="sqm">sqm</option>
+                                                <option value="sqft">sqft</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                         
+                        </div>
+                        <div class="field has-text-right">
+                            <div class="control">
+                              <button type="submit" class="button is-primary is-rounded">
+                                Next
+                              </button>
+                            </div>
+                          </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </container>
+</section>
