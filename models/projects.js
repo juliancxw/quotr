@@ -67,6 +67,9 @@ const projectSchema = new mongoose.Schema({
             },
         }
     ],
+    project_category: {type: String},
+    start_date: {type: Date},
+    forge_files: { type: String},
     project_total: { type: Number},
     created_by: { type: String, required: true},
     viewers: [{

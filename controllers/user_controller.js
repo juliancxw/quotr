@@ -109,7 +109,7 @@ module.exports = {
 
         // Authentication successful
         req.session.user = user
-        res.redirect('/dashboard')
+        res.redirect('../dashboard')
     },
 
     logout: (req, res) => {

@@ -7,6 +7,7 @@ const session = require('express-session')
 const { flash } = require('express-flash-message')
 const { setUserVarMiddleware } = require('./middlewares/authentication')
 
+
 // Routers
 const userRouter = require('./routers/user_router')
 const dashboardRouter = require('./routers/dashboard_router')
@@ -43,6 +44,9 @@ app.use(flash({ sessionKeyName: 'flash_message' }))
 
 // setting middleware to ensure global template user variable
 app.use(setUserVarMiddleware)
+
+// Static public folder
+app.use(express.static('public'))
 
 // ------ ROUTERS ------
 app.get('/', function (req, res) {

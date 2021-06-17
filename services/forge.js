@@ -1,6 +1,5 @@
 const FORGE_CLIENT_ID = process.env.FORGE_CLIENT_ID;
 const FORGE_CLIENT_SECRET = process.env.FORGE_CLIENT_SECRET;
-let access_token = '';
 const axios = require('axios');   
 const querystring = require('querystring');
 const multer = require('multer');     
@@ -10,6 +9,7 @@ const Buffer = require('buffer').Buffer;
 String.prototype.toBase64 = function () {
     return new Buffer(this).toString('base64')
 }
+
 
 module.exports = {
     // function to authenticate for users to upload and delete model
@@ -29,19 +29,21 @@ module.exports = {
                     scope: scopes
                 })
             })
-            console.log(response.data)
+            // console.log(response.data)
+            return response.data.access_token
         } catch(err) {
             console.log(err)
             await req.flash('error', 'Unable to connect to Forge')
             res.redirect('/users/dashboard')
             return
         }
-        access_token = response.data.access_token
+
+        
         
     },
 
   // function to authenticate for users to view models only
-  AuthenticateCreate2: async () => {
+  AuthenticateViewer: async () => {
         const scopes = 'viewables:read';
         try {
             response = await axios({
@@ -57,67 +59,132 @@ module.exports = {
                     scope: scopes
                 })
             })
+            return response.data.access_token
         } catch(err) {
             console.log(err)
             await req.flash('error', 'Unable to connect to Forge')
             res.redirect('/users/dashboard')
             return
         }
-        access_token = response.data.access_token
     }, 
 
     // function to create new bucket for every new project
-    createForgeBucket: async (projectId) => {
+    CreateForgeBucket: async (projectId, accessToken) => {
         const bucketKey = FORGE_CLIENT_ID.toLowerCase() + "_" + projectId; // Bucket key must be unique
         const policyKey = 'persistent'; 
         try {
-            await Axios({
+            await axios({
                 method: 'POST',
                 url: 'https://developer.api.autodesk.com/oss/v2/buckets',
                 headers: {
                     'content-type': 'application/json',
-                    Authorization: 'Bearer ' + access_token
+                    Authorization: 'Bearer ' + accessToken
                 },
                 data: JSON.stringify({
                     'bucketKey': bucketKey,
                     'policyKey': policyKey
                 })
             })
+            console.log("bucket created " + bucketKey)
+            return bucketKey
         }
         catch(err) {
-            if (error.response && error.response.status == 409) {
+            if (err.response && err.response.status == 409) {
                 console.log('Bucket already exists, skip creation.');
-                res.redirect('/api/forge/datamanagement/bucket/detail');
+                return bucketKey
             }
-            console.log(error);
-            res.send('Failed to create a new bucket');
+            // console.log(err);
         }
     },
 
-    uploadToForge: (req, res) => {
-        fs.readFile(req.file.path, function (err, filecontent) {
-            Axios({
-                method: 'PUT',
-                url: 'https://developer.api.autodesk.com/oss/v2/buckets/' + encodeURIComponent(bucketKey) + '/objects/' + encodeURIComponent(req.file.originalname),
-                headers: {
-                    Authorization: 'Bearer ' + access_token,
-                    'Content-Disposition': req.file.originalname,
-                    'Content-Length': filecontent.length
-                },
-                data: filecontent
-            })
-            .then(function (response) {
-                // Success
-                console.log(response);
-                const urn = response.data.objectId.toBase64();
-                res.redirect('/api/forge/modelderivative/' + urn);
-            })
-            .catch(function (error) {
-                // Failed
-                console.log(error);
-                res.send('Failed to create a new object in the bucket');
-            })
-        })
-    }
+   
 
+    // Translate uploaded file to model derivative for forge viewer
+    TranslateFile: async (accessToken, urn) => {
+        const format_type = 'svf';
+        const format_views = ['2d', '3d'];
+        try {
+            let response = await axios({
+                method: 'POST',
+                url: 'https://developer.api.autodesk.com/modelderivative/v2/designdata/job',
+                headers: {
+                    'content-type': 'application/json',
+                    Authorization: 'Bearer ' + accessToken
+                },
+                data: JSON.stringify({
+                    'input': {
+                        'urn': urn
+                    },
+                    'output': {
+                        'formats': [
+                            {
+                                'type': format_type,
+                                'views': format_views
+                            }
+                        ]
+                    }
+                })
+            })
+            return response
+        }
+        catch(err) {
+            console.log("translation error " + err);
+            return err
+        }   
+    },
+    // MakeThumbnail: async (accessToken, urn) => {
+    //     const format_type = 'thumbnail';
+    //     const width = 200;
+    //     const height = 200;
+    //     try {
+    //         let response = await axios({
+    //             method: 'POST',
+    //             url: 'https://developer.api.autodesk.com/modelderivative/v2/designdata/job',
+    //             headers: {
+    //                 'content-type': 'application/json',
+    //                 Authorization: 'Bearer ' + accessToken
+    //             },
+    //             data: JSON.stringify({
+    //                 'input': {
+    //                     'urn': urn
+    //                 },
+    //                 'output': {
+    //                     'formats': [
+    //                         {
+    //                             'type': format_type,
+    //                             'advanced': {
+    //                                 'width': width,
+    //                                 'height': height
+    //                             }
+    //                         }
+    //                     ]
+    //                 }
+    //             })
+    //         })
+    //         return response
+    //     }
+    //     catch(err) {
+    //         console.log("translation error " + err);
+    //         return err
+    //     }   
+    // },
+    // GetThumbnail: async (accessToken, urn) => {
+    //     const format_type = 'thumbnail';
+    //     const width = 200;
+    //     const height = 200;
+    //     try {
+    //         let response = await axios({
+    //             method: 'GET',
+    //             url: 'https://developer.api.autodesk.com/modelderivative/v2/designdata/' + urn + '/thumbnail',
+    //             headers: {
+    //                 Authorization: 'Bearer ' + accessToken
+    //             }
+    //         })
+    //         return response
+    //     }
+    //     catch(err) {
+    //         console.log("translation error " + err);
+    //         return err
+    //     }   
+    // },
 }

@@ -5,6 +5,8 @@ const {
     guestOnly: guestOnlyMiddleware,
   } = require('../middlewares/authentication')
 const projectController = require('../controllers/project_controller')
+const multer = require('multer');         // To handle file upload
+const upload = multer({ dest: 'tmp/' }); // Save file into local /tmp folder
 
 
 // Create New Project Form
@@ -17,6 +19,15 @@ router.post('/new',  projectController.newProject)
 router.get('/upload',  projectController.uploadForm)
 
 // Upload drawings to forge
-router.post('/upload',  projectController.uploadFiles)
+router.post('/upload', upload.single('fileToUpload'), projectController.uploadFiles)
+
+// Quotr Form
+router.get('/quotr',  projectController.quotr)
+
+// update BOQ
+router.post('/update_boq', projectController.updateBOQ)
+
+// delete
+router.delete('/:id', projectController.delete)
 
 module.exports = router

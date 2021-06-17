@@ -10,14 +10,14 @@ let data =[
         owner_last_name: "Doe",
         owner_email: "blablabla@gmail.com",
         owner_contact: "+65 97865124",
-        address:[
+        address:
             {
-                address: "123 Sesame Street",
+                address1: "123 Sesame Street",
                 unit: "#11-11",
                 country: "Singapore",
                 postal: "123456"
             }
-        ],
+        ,
         boq:[
             {
                 order:1,
@@ -58,14 +58,14 @@ let data =[
         owner_last_name: "Doe",
         owner_email: "blablablsa@gmail.com",
         owner_contact: "+65 97865124",
-        address:[
+        address:
             {
-                address: "123 Sesame Street",
+                address1: "123 Sesame Street",
                 unit: "#11-11",
                 country: "Singapore",
                 postal: "123456"
             }
-        ],
+        ,
         boq:[
             {
                 order:1,
@@ -106,14 +106,14 @@ let data =[
         owner_last_name: "Doe",
         owner_email: "blablabla@gmail.com",
         owner_contact: "+65 97865124",
-        address:[
+        address:
             {
-                address: "123 Sesame Street",
+                address1: "123 Sesame Street",
                 unit: "#11-11",
                 country: "Singapore",
                 postal: "123456"
             }
-        ],
+        ,
         boq:[
             {
                 order:1,
