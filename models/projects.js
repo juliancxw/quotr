@@ -72,10 +72,7 @@ const projectSchema = new mongoose.Schema({
     forge_files: { type: String},
     project_total: { type: Number},
     created_by: { type: String, required: true},
-    viewers: [{
-        userid: { type: String, max: 100 },
-        role: { type: String, max: 100 }
-    }],
+    status: { type: String},
     created_at: { type: Date },
     updated_at: { type: Date },
 })

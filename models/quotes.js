@@ -36,8 +36,8 @@ const quoteSchema = new mongoose.Schema({
     updated_at: { type: Date },
 })
 
-const ProjectModel = mongoose.model('Project', projectSchema)
+const QuoteModel = mongoose.model('Quote', quoteSchema)
 
 module.exports = {
-    ProjectModel: ProjectModel
+    QuoteModel: QuoteModel
 }

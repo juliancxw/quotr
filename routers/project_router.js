@@ -30,4 +30,7 @@ router.post('/update_boq', projectController.updateBOQ)
 // delete
 router.delete('/:id', projectController.delete)
 
+// Cnstr Form
+router.get('/cnstr',  projectController.cnstr)
+
 module.exports = router

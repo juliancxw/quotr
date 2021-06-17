@@ -17,7 +17,7 @@ module.exports = {
             return
         }
 
-        res.redirect('/users/dashboard')
+        res.redirect('/dashboard')
     },
 
     setUserVarMiddleware: (req, res, next) => {

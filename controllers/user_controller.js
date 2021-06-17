@@ -55,10 +55,10 @@ module.exports = {
         
         // hashing using bcrypt
         const generatedHash = await bcrypt.hash(req.body.password, saltRounds)
-        const userid = uuidv4()
+        
         try {
             await UserModel.create({
-                userid: userid,
+                user_type: req.body.user_type,
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
                 email: req.body.email,
@@ -80,7 +80,7 @@ module.exports = {
         let user = null
         let inputEmail = req.body.email
         let inputPassword = req.body.password
-
+        
         try {
             user = await UserModel.findOne({ email: inputEmail })
         } catch(err) {
@@ -109,7 +109,7 @@ module.exports = {
 
         // Authentication successful
         req.session.user = user
-        res.redirect('../dashboard')
+        res.redirect('/dashboard')
     },
 
     logout: (req, res) => {

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  </head>
+  <body class="has-background-light">
+
+<%- include('../partials/navbar') %>
+<section class="section">
+  <div class="container">
+    <div class="box">
+      <nav class="level">
+        <div class="level-left">
+          <div class="level-item has-text-centered">
+            <div>
+              <h3 class="title is-spaced ">WELCOME BACK <span class="has-text-success has-background-primary-light"><%= user.first_name.toUpperCase() %> <%= user.last_name.toUpperCase() %></span>!</h3>
+              
+            </div>
+          </div>
+        </div>    
+        <div class="level-right">
+          <div class="level-item has-text-centered">
+            <div>
+              <h3 class="title is-spaced"></h3>
+             
+            </div>
+          </div>
+        </div>         
+      </nav>
+    </div>
+  
+  </div>
+  
+</section>
+
+<section class="section">
+  <div class="container">
+    <nav class="level">
+      <!-- Left side -->
+      <div class="level-left">
+        <div class="level-item">
+          <div class="container">
+            <h1 class="title">
+              Projects Available to Quote
+            </h1>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Right side -->
+   
+    </nav>
+  </div>
+
+
+    
+</section>
+<div class="container">
+  <% if (projects.length !== 0) { %> 
+    <div class="columns is-multiline">
+      <% projects.forEach((element, index) => { %>
+        <div class="column is-3">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+              </figure>
+            </div>
+            <div class="card-content">         
+              <div class="content">
+                <h6 class="title"><%= element.project_category %> OF <%= element.property_info.type %> AT <%= element.address.address1.toUpperCase() %> <%= element.address.unit %> <%= element.address.country.toUpperCase() %> <%= element.address.postal.toUpperCase() %></h6>
+                
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a href="./project/cnstr?id=<%= element._id %>" class="card-footer-item">Quote</a>
+            </footer>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  <% } else { %>
+  <div class="box">
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <p class="title is-4">
+            No Projects Available to Quote
+          </p>
+        
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  
+  <% } %>  
+ </div>
+ <section class="section">
+    <div class="container">
+      <nav class="level">
+        <!-- Left side -->
+        <div class="level-left">
+          <div class="level-item">
+            <div class="container">
+              <h1 class="title">
+                My Quotes
+              </h1>
+            </div>
+          </div>
+        </div>
+      
+        
+      </nav>
+    </div>
+  
+  
+      
+  </section>
+  <div class="container">
+    <% if (quotes.length !== 0) { %> 
+      <div class="columns is-multiline">
+        <% quotes.forEach((element, index) => { %>
+          <div class="column is-3">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                </figure>
+              </div>
+              <div class="card-content">         
+                <div class="content">
+                  <h6 class="title"><%= element.project_category %> OF <%= element.property_info.type %> AT <%= element.address.address1.toUpperCase() %> <%= element.address.unit %> <%= element.address.country.toUpperCase() %> <%= element.address.postal.toUpperCase() %></h6>
+                  
+                </div>
+              </div>
+              <footer class="card-footer">
+                <a href="./project/quotr?id=<%= element._id %>" class="card-footer-item">View</a>
+              <a href="./project/quotr?id=<%= element._id %>" class="card-footer-item">Edit</a>
+              <form method="post" action="./project/<%= element.id %>?_method=DELETE" class="card-footer-item">
+                <button type="submit" class=" button is-ghost is-danger is-inverted">Delete</a>
+              </form>
+              </footer>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% } else { %>
+    <div class="box">
+      <section class="hero">
+        <div class="hero-body">
+          <div class="container has-text-centered">
+            <p class="title is-4">
+              No Quotes Yet =(
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+    
+    
+    <% } %>  
+   </div>
+</body>
+</html>

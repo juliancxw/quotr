@@ -202,6 +202,31 @@ module.exports = {
                 res.redirect('/dashboard')
             })
     },
+
+    cnstr: async (req, res) => {
+        let projectId = req.query.id
+        let project
+
+        // Get token key for forge to view only
+        let accessToken = await AuthenticateViewer()
+        console.log(accessToken)
+        try {
+            project = await ProjectModel.findById(projectId)
+            // console.log(project.boq)
+            // console.log(accessToken)
+            // console.log("forge" +project.forge_files)
+            res.render('project/cnstr', {
+                boq: project.boq,
+                accessToken: accessToken,
+                urn: project.forge_files,
+                projectId: projectId
+            })
+        } catch (err) {
+            // res.statusCode(500)
+            return 'server error'
+       
+        }
+    },
 }
 
 
