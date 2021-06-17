@@ -25,11 +25,6 @@ let table = new Tabulator("#cnstr-table", {
         }},
         {title:"Rate", field:"work_rate", width:100, hozAlign:"center", sorter:"number", editor:"input"},
         {title:"Amount", field:"work_amount", width:100, hozAlign:"center", sorter:"number", editor:"input"},
-        {formatter:"buttonCross", align:"center", title:"", width:20, headerSort:false, cellClick:function(e, cell){
-            if(confirm('Are you sure you want to delete this entry?'))
-                cell.getRow().delete();
-            }
-        }
     ],
     placeholder:"No Data Available", //display message to user on empty table
 });
@@ -43,8 +38,13 @@ document.getElementById("submit").addEventListener("click", function(){
             type: 'POST',
             data: newBoq,
             contentType: 'application/json',
-            url: url
+            url: url,
+            success: () => {
+                window.location.href = '/dashboard'
+            }
           });
+
+       
 });
 
 

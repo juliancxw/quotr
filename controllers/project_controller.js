@@ -256,8 +256,19 @@ module.exports = {
         console.log(newBoq)
         // Find project and update entire BOQ
         try {
+            project = await ProjectModel.findById(projectId)
             await QuoteModel.create({
                 projectid: projectId,
+                address: {
+                    address1: project.address.address1,
+                    address2: project.address.address2,
+                    unit: project.address.unit,
+                    building: project.address.building,
+                    country: project.address.country,
+                    postal: project.address.postal
+                },
+                prop_info: project.prop_info,
+                forge_files: project.forge_files,
                 quoted_by: userId,
                 quote: newBoq,
                 created_at: timestampNow,
