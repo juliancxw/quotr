@@ -10,27 +10,31 @@ const upload = multer({ dest: 'tmp/' }); // Save file into local /tmp folder
 
 
 // Create New Project Form
-router.get('/new', projectController.new)
+router.get('/new', authenticatedOnlyMiddleware, projectController.new)
 
 // Create New Project
-router.post('/new',  projectController.newProject)
+router.post('/new', authenticatedOnlyMiddleware, projectController.newProject)
 
 // Form to upload drawings for new project
-router.get('/upload',  projectController.uploadForm)
+router.get('/upload', authenticatedOnlyMiddleware, projectController.uploadForm)
 
 // Upload drawings to forge
 router.post('/upload', upload.single('fileToUpload'), projectController.uploadFiles)
 
 // Quotr Form
-router.get('/quotr',  projectController.quotr)
+router.get('/quotr', authenticatedOnlyMiddleware, projectController.quotr)
 
 // update BOQ
-router.post('/update_boq', projectController.updateBOQ)
+router.post('/update_boq', authenticatedOnlyMiddleware, projectController.updateBOQ)
 
 // delete
-router.delete('/:id', projectController.delete)
+router.delete('/:id', authenticatedOnlyMiddleware, projectController.delete)
+
+// publish
+router.post('/publish', authenticatedOnlyMiddleware, projectController.publish)
+
 
 // Cnstr Form
-router.get('/cnstr',  projectController.cnstr)
+router.get('/cnstr', authenticatedOnlyMiddleware, projectController.cnstr)
 
 module.exports = router

@@ -161,7 +161,8 @@ module.exports = {
                 boq: project.boq,
                 accessToken: accessToken,
                 urn: project.forge_files,
-                projectId: projectId
+                projectId: projectId,
+                status: project.status
             })
         } catch (err) {
             // res.statusCode(500)
@@ -201,6 +202,22 @@ module.exports = {
                 console.log(err)
                 res.redirect('/dashboard')
             })
+    },
+
+    publish: async (req, res) => {
+        let projectId = req.query.id
+        let project
+
+        try {
+            project = await ProjectModel.findByIdAndUpdate(projectId,{
+                "status" : "open"
+            })
+        } catch (err) {
+            // res.statusCode(500)
+            return 'server error'
+       
+        }
+        res.redirect('/project/quotr?id=' + projectId)
     },
 
     cnstr: async (req, res) => {

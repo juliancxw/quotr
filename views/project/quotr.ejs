@@ -97,6 +97,24 @@
                 <button class="button is-rounded is-small" id="misc">Miscellaneous</button>
             </div>
         </div>
+        
+        <div class="box m-6">
+          <% if (status !== "open") { %>
+            <h6 class="title is-6">Publish your Project</h6>
+            <p class="subtitle is-6">Publish your project to receive quotes!</p>
+            <div class="container has-text-centered">
+                <form method="post" action="../project/publish?id=<%= projectId %>">
+                    <button type="submit" class=" button is-rounded is-success">Publish</a>
+                </form>
+            </div>
+            <% } else { %>
+                <div class="container has-text-centered has-text-success">
+                    <h6 class="title is-4">Project has been published!</h6>
+                </div>
+           <% } %>
+        </div>
+    
+            
     </div>
 </div>
 <script>
