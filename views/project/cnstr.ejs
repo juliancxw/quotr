@@ -81,9 +81,11 @@
     <div class="column is-5">
         <div id="cnstr-table"></div>
         <div class="box m-6 has-text-centered ">
-            <h6 class="title is-6">Submit quote for approval</h6>
-          
+            <h6 class="title is-6">Submit quote to client</h6>
+            <form method="post" action="../project/quote?id=<%= projectId %>">
                 <button class="button is-rounded is-primary" id="submit">Submit Quote</button>
+            </form>
+                
  
         </div>
     </div>

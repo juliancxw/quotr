@@ -1,4 +1,5 @@
 const {ProjectModel} = require('../models/projects')
+const {QuoteModel} = require('../models/quotes')
 const {AuthenticateCreate, AuthenticateViewer, CreateForgeBucket, TranslateFile, MakeThumbnail} = require('../services/forge')
 const moment = require('moment')
 const { v4: uuidv4 } = require('uuid')
@@ -36,8 +37,8 @@ module.exports = {
                     country: "singapore",
                     postal: req.body.postal,
                 },
-                property_info:{
-                    type: req.body.property_type,
+                prop_info:{
+                    prop_type: req.body.property_type,
                     total_floor_area: req.body.gfa,
                 },
                 project_category: req.body.project_category,
@@ -243,6 +244,32 @@ module.exports = {
             return 'server error'
        
         }
+    },
+
+    quote: async (req, res) => {
+        let projectId = req.query.id
+        let project
+        let newBoq = req.body
+        let userId = req.session.user._id
+        // newBoq= JSON.stringify(newBoq).slice(3,-6)
+        // newBoq = JSON.parse(newBoq)
+        console.log(newBoq)
+        // Find project and update entire BOQ
+        try {
+            await QuoteModel.create({
+                projectid: projectId,
+                quoted_by: userId,
+                quote: newBoq,
+                created_at: timestampNow,
+                updated_at: timestampNow,
+            })
+            console.log("database updated")
+        }
+       catch (err){
+            console.log(err)
+            return
+       }
+
     },
 }
 

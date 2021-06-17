@@ -72,7 +72,7 @@
             </div>
             <div class="card-content">         
               <div class="content">
-                <h6 class="title"><%= element.project_category %> OF <%= element.property_info.type %> AT <%= element.address.address1.toUpperCase() %> <%= element.address.unit %> <%= element.address.country.toUpperCase() %> <%= element.address.postal.toUpperCase() %></h6>
+                <h6 class="title"><%= element.project_category %> OF <%= element.prop_info.prop_type.toUpperCase() %> AT <%= element.address.address1.toUpperCase() %> <%= element.address.unit %> <%= element.address.country.toUpperCase() %> <%= element.address.postal.toUpperCase() %></h6>
                 
               </div>
             </div>
@@ -134,14 +134,14 @@
               </div>
               <div class="card-content">         
                 <div class="content">
-                  <h6 class="title"><%= element.project_category %> OF <%= element.property_info.type %> AT <%= element.address.address1.toUpperCase() %> <%= element.address.unit %> <%= element.address.country.toUpperCase() %> <%= element.address.postal.toUpperCase() %></h6>
+                  
                   
                 </div>
               </div>
               <footer class="card-footer">
-                <a href="./project/quotr?id=<%= element._id %>" class="card-footer-item">View</a>
+                <a href="./project/quoteview?id=<%= element._id %>" class="card-footer-item">View</a>
               <a href="./project/quotr?id=<%= element._id %>" class="card-footer-item">Edit</a>
-              <form method="post" action="./project/<%= element.id %>?_method=DELETE" class="card-footer-item">
+              <form method="post" action="./project/quote/<%= element.id %>?_method=DELETE" class="card-footer-item">
                 <button type="submit" class=" button is-ghost is-danger is-inverted">Delete</a>
               </form>
               </footer>

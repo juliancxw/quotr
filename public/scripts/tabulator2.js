@@ -36,36 +36,15 @@ let table = new Tabulator("#cnstr-table", {
 
 //Add row on "Add Row" button click
 document.getElementById("submit").addEventListener("click", function(){
-    table.addRow({work_category: "Professional Services"}, false);
+    let newBoq = JSON.stringify(table.getData())
+        console.log(newBoq)
+        let url = "./quote?id=" + projectId
+        $.ajax({
+            type: 'POST',
+            data: newBoq,
+            contentType: 'application/json',
+            url: url
+          });
 });
-document.getElementById("hacking").addEventListener("click", function(){
-    table.addRow({work_category: "Hacking and Removal"}, false);
-});
-document.getElementById("wet").addEventListener("click", function(){
-    table.addRow({work_category: "Flooring / Wet Works"}, false);
-});
-document.getElementById("carpentry").addEventListener("click", function(){
-    table.addRow({work_category: "Carpentry"}, false);
-});
-document.getElementById("glass").addEventListener("click", function(){
-    table.addRow({work_category: "Glass Works"}, false);
-});
-document.getElementById("ceiling").addEventListener("click", function(){
-    table.addRow({work_category: "Ceiling"}, false);
-});
-document.getElementById("door").addEventListener("click", function(){
-    table.addRow({work_category: "Doors and windows"}, false);
-});
-document.getElementById("painting").addEventListener("click", function(){
-    table.addRow({work_category: "Painting"}, false);
-});
-document.getElementById("electrical").addEventListener("click", function(){
-    table.addRow({work_category: "Electrical"}, false);
-});
-document.getElementById("plumbing").addEventListener("click", function(){
-    table.addRow({work_category: "Plumbing"}, false);
-});
-document.getElementById("misc").addEventListener("click", function(){
-    table.addRow({work_category: "Miscellaneous"}, false);
-});
+
 

@@ -25,8 +25,8 @@ const projectSchema = new mongoose.Schema({
                 type: String, required: true
             }
         },
-    property_info:{
-        type: {
+    prop_info:{
+        prop_type: {
             type: String
         },
         sub_type: {

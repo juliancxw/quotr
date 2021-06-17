@@ -37,4 +37,8 @@ router.post('/publish', authenticatedOnlyMiddleware, projectController.publish)
 // Cnstr Form
 router.get('/cnstr', authenticatedOnlyMiddleware, projectController.cnstr)
 
+// Cnstr submit quote
+router.post('/quote', authenticatedOnlyMiddleware, projectController.quote)
+
+
 module.exports = router
