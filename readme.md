@@ -31,7 +31,7 @@ An app that allows designers to easily create a Schedule of Works (SOW) while re
 * Express Flash Message
 
 
-## Thing to work on
+## Things to work on
 
 * Site Styling
 * Form Validation
