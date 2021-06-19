@@ -1,14 +1,14 @@
-#QUOTR APP
-___
+# QUOTR APP
+
 
 https://dsgnquotr.herokuapp.com/
 
 ## Overview
-___
+
 An app that allows designers to easily create a Schedule of Works (SOW) while referencing design plans and models in the same place. The SOW can then be sent to contractors who can provide quotes based on the SOW and drawings upoaded.
 
 ## Main Tech and Dependencies
-___
+
 * Autodesk Forge View and Model Derrivative
 ... Used to translate uploaded pdf plans or 3D models into a format compatible with 3D viewer
 * Tabulator
@@ -29,7 +29,7 @@ ___
 
 
 ## Thing to work on
-___
+
 * Site Styling
 * Form Validation
 * Use busboy to stream uploads instead
