@@ -10,13 +10,16 @@ An app that allows designers to easily create a Schedule of Works (SOW) while re
 ## Main Tech and Dependencies
 
 * Autodesk Forge View and Model Derrivative
+
 ... Used to translate uploaded pdf plans or 3D models into a format compatible with 3D viewer
 * Tabulator
+
 ... Used to create a dynamic table to input Schedule of Works
 * Express
 * MongoDB
 * Mongoose
 * Multer
+
 ... Used to handle file upload
 * EJS
 * Axios
