@@ -3,6 +3,14 @@
 
 https://dsgnquotr.herokuapp.com/
 
+Login as Designer:
+email: designer@mail.com
+password: password
+
+Login as Contractor:
+email: Contractor@mail.com
+password: password
+
 ## Overview
 
 An app that allows designers to easily create a Schedule of Works (SOW) while referencing design plans and models in the same place. The SOW can then be sent to contractors who can provide quotes based on the SOW and drawings upoaded.
